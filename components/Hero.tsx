@@ -5,7 +5,7 @@ import { Download, ExternalLink } from 'lucide-react'
 const Hero = () => {
   const handleDownloadResume = () => {
     const link = document.createElement('a')
-    link.href = '/David-Crystal-Resume.pdf' // Make sure your resume is in /public
+    link.href = `${process.env.NODE_ENV === 'production' ? '/portfolio' : ''}/David-Crystal-Resume.pdf`
     link.download = 'David-Crystal-Resume.pdf'
     link.click()
   }
@@ -76,7 +76,7 @@ const Hero = () => {
           <div className="flex justify-center lg:justify-end">
             <div className="relative">
               <img
-                src="/profile-avatar.png" // ✅ Your photo file in /public
+                src={`${process.env.NODE_ENV === 'production' ? '/portfolio' : ''}/profile-avatar.png`}
                 alt="David Crystal"
                 className="w-80 h-auto object-cover shadow-lg border-4 border-white rounded-xl"
               />

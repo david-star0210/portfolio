@@ -15,7 +15,7 @@ const Projects = () => {
         'Improved incident response time by 35% with Datadog + CloudWatch',
         'Led async design reviews across remote teams'
       ],
-      image: '/chilipiper-demo.png'
+      image: `${process.env.NODE_ENV === 'production' ? '/portfolio' : ''}/chilipiper-demo.png`
     },
     {
       title: 'Close CRM Feature Enhancements',
@@ -29,7 +29,7 @@ const Projects = () => {
         'Implemented OAuth and RBAC with encrypted session storage',
         'Automated tests and releases to improve QA and reduce bugs'
       ],
-      image: '/close-crm-demo.png'
+      image: `${process.env.NODE_ENV === 'production' ? '/portfolio' : ''}/close-crm-demo.png`
     },
     {
       title: 'WordPress + WooCommerce Features',
@@ -43,7 +43,7 @@ const Projects = () => {
         'Collaborated asynchronously with global teams via Git and P2s',
         'Reduced support volume with better UX flows'
       ],
-      image: '/woocommerce-demo.png'
+      image: `${process.env.NODE_ENV === 'production' ? '/portfolio' : ''}/woocommerce-demo.png`
     }
   ]
 

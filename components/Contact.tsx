@@ -41,7 +41,7 @@ const Contact = () => {
 
   const handleDownloadResume = () => {
     const link = document.createElement('a');
-    link.href = '/David-Crystal-Resume.pdf';
+    link.href = `${process.env.NODE_ENV === 'production' ? '/portfolio' : ''}/David-Crystal-Resume.pdf`;
     link.download = 'David-Crystal-Resume.pdf';
     link.click();
   }
