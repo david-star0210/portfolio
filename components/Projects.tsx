@@ -70,17 +70,34 @@ const Projects = () => {
   }
 
   return (
-    <section id="projects" className="section-padding bg-gradient-to-br from-white via-blue-50 to-purple-50">
+    <section id="projects" className="section-padding bg-white">
       <div className="container-max">
-        <motion.h2
-          className="text-3xl sm:text-4xl font-bold bg-gradient-to-r from-gray-900 via-blue-800 to-purple-800 bg-clip-text text-transparent mb-12 text-center"
-          initial={{ opacity: 0, y: -20 }}
+        <motion.div
+          className="text-center mb-20"
+          initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6 }}
+          transition={{ duration: 0.8 }}
           viewport={{ once: true }}
         >
-          Projects
-        </motion.h2>
+          <motion.h2
+            className="text-4xl sm:text-5xl font-bold text-gray-900 mb-6"
+            initial={{ opacity: 0, y: -20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6 }}
+            viewport={{ once: true }}
+          >
+            Featured Projects
+          </motion.h2>
+          <motion.p
+            className="text-xl text-gray-600 max-w-3xl mx-auto leading-relaxed"
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, delay: 0.2 }}
+            viewport={{ once: true }}
+          >
+            A showcase of innovative solutions and technical excellence across various domains and technologies.
+          </motion.p>
+        </motion.div>
 
         <motion.div
           className="space-y-16"

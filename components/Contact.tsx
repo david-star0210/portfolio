@@ -1,9 +1,14 @@
 'use client'
 
 import { Mail, Phone, MapPin, Linkedin, Github, Download } from 'lucide-react'
-import { motion } from 'framer-motion'
+import { motion, useInView } from 'framer-motion'
+import { useRef } from 'react'
+import TextReveal from './TextReveal'
+import MagneticButton from './MagneticButton'
 
 const Contact = () => {
+  const ref = useRef(null)
+  const isInView = useInView(ref, { once: true, amount: 0.2 })
   const contactInfo = [
     {
       icon: Mail,

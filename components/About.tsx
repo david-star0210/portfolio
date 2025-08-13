@@ -10,9 +10,9 @@ const About = () => {
   const isInView = useInView(ref, { once: true, amount: 0.2 })
 
   return (
-    <section id="about" className="section-padding bg-white">
+    <section id="about" className="section-padding bg-gradient-to-br from-gray-50/30 via-white to-blue-50/10">
       <div className="container-max">
-        <div className="max-w-5xl mx-auto" ref={ref}>
+        <div className="max-w-6xl mx-auto" ref={ref}>
           <motion.div
             className="text-center mb-16"
             initial={{ opacity: 0, y: 30 }}
@@ -81,28 +81,40 @@ const About = () => {
               variants={fadeInUp}
             >
               <motion.div
-                className="card-clean p-8"
+                className="bg-white/80 backdrop-blur-sm rounded-3xl p-8 shadow-lg border border-gray-200/50"
                 whileHover={{ scale: 1.02, y: -5 }}
                 transition={{ duration: 0.3 }}
               >
-                <h3 className="text-xl font-semibold text-gray-900 mb-4">Core Expertise</h3>
-                <div className="space-y-3">
-                  <div className="flex items-center gap-3">
-                    <div className="w-2 h-2 bg-blue-500 rounded-full"></div>
-                    <span className="text-gray-700">Full-Stack Web Development</span>
-                  </div>
-                  <div className="flex items-center gap-3">
-                    <div className="w-2 h-2 bg-purple-500 rounded-full"></div>
-                    <span className="text-gray-700">Cloud Architecture & DevOps</span>
-                  </div>
-                  <div className="flex items-center gap-3">
-                    <div className="w-2 h-2 bg-green-500 rounded-full"></div>
-                    <span className="text-gray-700">Performance Optimization</span>
-                  </div>
-                  <div className="flex items-center gap-3">
-                    <div className="w-2 h-2 bg-orange-500 rounded-full"></div>
-                    <span className="text-gray-700">Team Leadership & Mentoring</span>
-                  </div>
+                <h3 className="text-2xl font-bold text-gray-900 mb-6">Core Expertise</h3>
+                <div className="space-y-4">
+                  <motion.div
+                    className="flex items-center gap-4 p-3 rounded-xl hover:bg-gray-50/50 transition-colors"
+                    whileHover={{ x: 5 }}
+                  >
+                    <div className="w-3 h-3 bg-gradient-to-r from-blue-500 to-cyan-500 rounded-full"></div>
+                    <span className="text-gray-700 font-medium">Full-Stack Web Development</span>
+                  </motion.div>
+                  <motion.div
+                    className="flex items-center gap-4 p-3 rounded-xl hover:bg-gray-50/50 transition-colors"
+                    whileHover={{ x: 5 }}
+                  >
+                    <div className="w-3 h-3 bg-gradient-to-r from-purple-500 to-pink-500 rounded-full"></div>
+                    <span className="text-gray-700 font-medium">Cloud Architecture & DevOps</span>
+                  </motion.div>
+                  <motion.div
+                    className="flex items-center gap-4 p-3 rounded-xl hover:bg-gray-50/50 transition-colors"
+                    whileHover={{ x: 5 }}
+                  >
+                    <div className="w-3 h-3 bg-gradient-to-r from-green-500 to-teal-500 rounded-full"></div>
+                    <span className="text-gray-700 font-medium">Performance Optimization</span>
+                  </motion.div>
+                  <motion.div
+                    className="flex items-center gap-4 p-3 rounded-xl hover:bg-gray-50/50 transition-colors"
+                    whileHover={{ x: 5 }}
+                  >
+                    <div className="w-3 h-3 bg-gradient-to-r from-orange-500 to-red-500 rounded-full"></div>
+                    <span className="text-gray-700 font-medium">Team Leadership & Mentoring</span>
+                  </motion.div>
                 </div>
               </motion.div>
             </motion.div>

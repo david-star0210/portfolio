@@ -25,7 +25,7 @@ const Header = () => {
 
   return (
     <motion.header
-      className="fixed top-0 left-0 right-0 bg-white/95 backdrop-blur-sm border-b border-gray-200 z-50"
+      className="fixed top-0 left-0 right-0 bg-white/90 backdrop-blur-md border-b border-gray-100/50 z-50 shadow-sm"
       initial={{ y: -100 }}
       animate={{ y: 0 }}
       transition={{ duration: 0.6, ease: "easeOut" }}

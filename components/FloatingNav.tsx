@@ -13,7 +13,6 @@ const FloatingNav = () => {
     { id: 'about', icon: User, label: 'About' },
     { id: 'experience', icon: Briefcase, label: 'Experience' },
     { id: 'skills', icon: Award, label: 'Skills' },
-    { id: 'education', icon: GraduationCap, label: 'Education' },
     { id: 'projects', icon: Code, label: 'Projects' },
     { id: 'contact', icon: Mail, label: 'Contact' }
   ]
