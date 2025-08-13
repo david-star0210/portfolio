@@ -2,7 +2,7 @@
 
 import { useState, useEffect } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
-import { Home, User, Briefcase, Code, Mail, Award } from 'lucide-react'
+import { Home, User, Briefcase, Code, Mail, Award, GraduationCap } from 'lucide-react'
 
 const FloatingNav = () => {
   const [activeSection, setActiveSection] = useState('hero')
@@ -13,6 +13,7 @@ const FloatingNav = () => {
     { id: 'about', icon: User, label: 'About' },
     { id: 'experience', icon: Briefcase, label: 'Experience' },
     { id: 'skills', icon: Award, label: 'Skills' },
+    { id: 'education', icon: GraduationCap, label: 'Education' },
     { id: 'projects', icon: Code, label: 'Projects' },
     { id: 'contact', icon: Mail, label: 'Contact' }
   ]
