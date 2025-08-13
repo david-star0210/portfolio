@@ -1,4 +1,7 @@
+'use client'
+
 import { Briefcase, Cloud, Code } from 'lucide-react'
+import { motion } from 'framer-motion'
 
 const Experience = () => {
   const experiences = [

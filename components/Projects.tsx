@@ -1,5 +1,8 @@
 'use client'
 
+import { motion } from 'framer-motion'
+import { ExternalLink } from 'lucide-react'
+
 const Projects = () => {
   const projects = [
     {
@@ -47,71 +50,201 @@ const Projects = () => {
     }
   ]
 
-  return (
-    <section id="projects" className="section-padding">
-      <div className="container-max">
-        <h2 className="text-3xl sm:text-4xl font-bold text-gray-900 mb-12 text-center">
-          Projects
-        </h2>
+  const containerVariants = {
+    hidden: { opacity: 0 },
+    visible: {
+      opacity: 1,
+      transition: {
+        delayChildren: 0.3,
+        staggerChildren: 0.2
+      }
+    }
+  }
 
-        <div className="space-y-16">
+  const projectVariants = {
+    hidden: { opacity: 0, y: 50 },
+    visible: {
+      opacity: 1,
+      y: 0
+    }
+  }
+
+  return (
+    <section id="projects" className="section-padding bg-gradient-to-br from-white via-blue-50 to-purple-50">
+      <div className="container-max">
+        <motion.h2
+          className="text-3xl sm:text-4xl font-bold bg-gradient-to-r from-gray-900 via-blue-800 to-purple-800 bg-clip-text text-transparent mb-12 text-center"
+          initial={{ opacity: 0, y: -20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6 }}
+          viewport={{ once: true }}
+        >
+          Projects
+        </motion.h2>
+
+        <motion.div
+          className="space-y-16"
+          variants={containerVariants}
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true }}
+        >
           {projects.map((project, index) => (
-            <div key={index} className="grid lg:grid-cols-2 gap-12 items-center">
+            <motion.div
+              key={index}
+              className="grid lg:grid-cols-2 gap-12 items-center"
+              variants={projectVariants}
+            >
               {/* Project Image */}
-              <div className="order-2 lg:order-1">
-                <img
-                  src={project.image}
-                  alt={`${project.title} screenshot`}
-                  className="rounded-xl shadow-md object-contain w-full h-auto bg-white"
-                />
-              </div>
+              <motion.div
+                className={`order-2 ${index % 2 === 0 ? 'lg:order-1' : 'lg:order-2'}`}
+                whileHover={{ scale: 1.05 }}
+                transition={{ duration: 0.3 }}
+              >
+                <motion.div
+                  className="relative group"
+                  whileHover={{ y: -10 }}
+                  transition={{ duration: 0.3 }}
+                >
+                  <motion.img
+                    src={project.image}
+                    alt={`${project.title} screenshot`}
+                    className="rounded-xl shadow-lg object-contain w-full h-auto bg-white group-hover:shadow-2xl transition-shadow duration-300"
+                    initial={{ opacity: 0, scale: 0.8 }}
+                    whileInView={{ opacity: 1, scale: 1 }}
+                    transition={{ duration: 0.6, delay: 0.2 }}
+                    viewport={{ once: true }}
+                  />
+                  {/* Overlay with link */}
+                  <motion.div
+                    className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent rounded-xl opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center"
+                    whileHover={{ opacity: 1 }}
+                  >
+                    <motion.a
+                      href={project.url}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="bg-white/90 backdrop-blur-sm text-gray-900 px-4 py-2 rounded-lg font-medium flex items-center gap-2 hover:bg-white transition-colors"
+                      whileHover={{ scale: 1.05 }}
+                      whileTap={{ scale: 0.95 }}
+                    >
+                      <ExternalLink size={16} />
+                      View Live
+                    </motion.a>
+                  </motion.div>
+                </motion.div>
+              </motion.div>
 
               {/* Project Content */}
-              <div className="order-1 lg:order-2 space-y-6">
-                <div>
-                  <h3 className="text-2xl font-bold text-gray-900 mb-3">
-                    <a href={project.url} target="_blank" rel="noopener noreferrer" className="hover:underline text-primary-600">
+              <motion.div
+                className={`order-1 ${index % 2 === 0 ? 'lg:order-2' : 'lg:order-1'} space-y-6`}
+                initial={{ opacity: 0, x: index % 2 === 0 ? 50 : -50 }}
+                whileInView={{ opacity: 1, x: 0 }}
+                transition={{ duration: 0.6, delay: 0.3 }}
+                viewport={{ once: true }}
+              >
+                <motion.div
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.5, delay: 0.4 }}
+                  viewport={{ once: true }}
+                >
+                  <motion.h3
+                    className="text-2xl font-bold text-gray-900 mb-3"
+                    whileHover={{ scale: 1.02 }}
+                  >
+                    <motion.a
+                      href={project.url}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="hover:underline bg-gradient-to-r from-primary-600 to-purple-600 bg-clip-text text-transparent hover:from-primary-700 hover:to-purple-700 transition-all duration-300"
+                      whileHover={{ scale: 1.05 }}
+                    >
                       {project.title}
-                    </a>
-                  </h3>
-                  <p className="text-gray-600 leading-relaxed">{project.description}</p>
-                </div>
+                    </motion.a>
+                  </motion.h3>
+                  <motion.p
+                    className="text-gray-600 leading-relaxed"
+                    initial={{ opacity: 0 }}
+                    whileInView={{ opacity: 1 }}
+                    transition={{ duration: 0.5, delay: 0.5 }}
+                    viewport={{ once: true }}
+                  >
+                    {project.description}
+                  </motion.p>
+                </motion.div>
 
                 {/* Technologies */}
-                <div>
+                <motion.div
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.5, delay: 0.6 }}
+                  viewport={{ once: true }}
+                >
                   <h4 className="text-sm font-semibold text-gray-900 mb-3 uppercase tracking-wide">
                     Technologies Used
                   </h4>
                   <div className="flex flex-wrap gap-2">
                     {project.technologies.map((tech, techIndex) => (
-                      <span
+                      <motion.span
                         key={techIndex}
-                        className="px-3 py-1 bg-primary-100 text-primary-700 text-sm font-medium rounded-full"
+                        className="px-3 py-1 bg-gradient-to-r from-primary-100 to-purple-100 text-primary-700 text-sm font-medium rounded-full hover:from-primary-200 hover:to-purple-200 cursor-default"
+                        initial={{ opacity: 0, scale: 0 }}
+                        whileInView={{ opacity: 1, scale: 1 }}
+                        transition={{ duration: 0.3, delay: 0.7 + techIndex * 0.1 }}
+                        whileHover={{
+                          scale: 1.1,
+                          boxShadow: "0 4px 8px rgba(0, 0, 0, 0.1)"
+                        }}
+                        viewport={{ once: true }}
                       >
                         {tech}
-                      </span>
+                      </motion.span>
                     ))}
                   </div>
-                </div>
+                </motion.div>
 
                 {/* Key Features */}
-                <div>
+                <motion.div
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.5, delay: 0.8 }}
+                  viewport={{ once: true }}
+                >
                   <h4 className="text-sm font-semibold text-gray-900 mb-3 uppercase tracking-wide">
                     Key Features
                   </h4>
                   <ul className="space-y-2">
                     {project.features.map((feature, featureIndex) => (
-                      <li key={featureIndex} className="flex items-start gap-3">
-                        <div className="w-1.5 h-1.5 bg-primary-600 rounded-full mt-2 flex-shrink-0"></div>
+                      <motion.li
+                        key={featureIndex}
+                        className="flex items-start gap-3"
+                        initial={{ opacity: 0, x: -20 }}
+                        whileInView={{ opacity: 1, x: 0 }}
+                        transition={{ duration: 0.3, delay: 0.9 + featureIndex * 0.1 }}
+                        whileHover={{ x: 5 }}
+                        viewport={{ once: true }}
+                      >
+                        <motion.div
+                          className="w-1.5 h-1.5 bg-gradient-to-r from-primary-600 to-purple-600 rounded-full mt-2 flex-shrink-0"
+                          animate={{
+                            scale: [1, 1.2, 1],
+                          }}
+                          transition={{
+                            duration: 2,
+                            repeat: Infinity,
+                            delay: featureIndex * 0.2
+                          }}
+                        ></motion.div>
                         <span className="text-gray-700 text-sm">{feature}</span>
-                      </li>
+                      </motion.li>
                     ))}
                   </ul>
-                </div>
-              </div>
-            </div>
+                </motion.div>
+              </motion.div>
+            </motion.div>
           ))}
-        </div>
+        </motion.div>
       </div>
     </section>
   )

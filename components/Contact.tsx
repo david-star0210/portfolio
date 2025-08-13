@@ -1,6 +1,7 @@
 'use client'
 
 import { Mail, Phone, MapPin, Linkedin, Github, Download } from 'lucide-react'
+import { motion } from 'framer-motion'
 
 const Contact = () => {
   const contactInfo = [
