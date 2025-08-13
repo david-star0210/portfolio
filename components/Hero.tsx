@@ -1,9 +1,11 @@
 'use client'
 
-import { Download, ExternalLink, ArrowDown } from 'lucide-react'
+import { Download, ExternalLink, ArrowDown, Github, Linkedin } from 'lucide-react'
 import { motion, useScroll, useTransform } from 'framer-motion'
-import { useRef } from 'react'
+import { useRef, useEffect } from 'react'
 import { fadeInUp, fadeInLeft, fadeInRight, staggerContainer, textReveal } from '../utils/animations'
+import TextReveal from './TextReveal'
+import MagneticButton from './MagneticButton'
 
 const Hero = () => {
   const ref = useRef(null)
@@ -39,248 +41,243 @@ const Hero = () => {
   return (
     <motion.section
       ref={ref}
+      id="hero"
       className="min-h-screen flex items-center justify-center relative overflow-hidden"
       style={{ y, opacity }}
     >
-      {/* Enhanced background with multiple layers */}
+      {/* Ultra-clean background */}
       <div className="absolute inset-0">
-        <div className="absolute inset-0 bg-gradient-to-br from-slate-50 via-white to-blue-50/30" />
-        <div className="absolute inset-0 bg-gradient-to-tr from-transparent via-purple-50/20 to-transparent" />
-        <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-gradient-to-r from-blue-400/10 to-purple-400/10 rounded-full blur-3xl" />
-        <div className="absolute bottom-1/4 right-1/4 w-96 h-96 bg-gradient-to-r from-purple-400/10 to-pink-400/10 rounded-full blur-3xl" />
+        <div className="absolute inset-0 bg-gradient-to-br from-white via-gray-50/50 to-blue-50/20" />
+
+        {/* Subtle geometric patterns */}
+        <div className="absolute inset-0 opacity-[0.02]">
+          <div className="absolute top-20 left-20 w-32 h-32 border border-gray-400 rounded-full" />
+          <div className="absolute top-40 right-32 w-24 h-24 border border-gray-400 rotate-45" />
+          <div className="absolute bottom-32 left-1/3 w-16 h-16 border border-gray-400 rounded-full" />
+        </div>
+
+        {/* Floating orbs - more subtle */}
+        <motion.div
+          className="absolute top-1/4 left-1/4 w-64 h-64 bg-gradient-to-r from-blue-400/5 to-purple-400/5 rounded-full blur-3xl"
+          animate={{
+            scale: [1, 1.1, 1],
+            x: [0, 20, 0],
+            y: [0, -10, 0]
+          }}
+          transition={{ duration: 8, repeat: Infinity, ease: "easeInOut" }}
+        />
+        <motion.div
+          className="absolute bottom-1/4 right-1/4 w-48 h-48 bg-gradient-to-r from-purple-400/5 to-pink-400/5 rounded-full blur-3xl"
+          animate={{
+            scale: [1, 1.2, 1],
+            x: [0, -15, 0],
+            y: [0, 10, 0]
+          }}
+          transition={{ duration: 6, repeat: Infinity, ease: "easeInOut", delay: 2 }}
+        />
       </div>
 
       <div className="container-max relative z-10 px-4 sm:px-6 lg:px-8">
-        <div className="grid lg:grid-cols-2 gap-16 items-center">
+        <div className="grid lg:grid-cols-2 gap-20 items-center">
 
-          {/* Left Content */}
+          {/* Left Content - Ultra Professional */}
           <motion.div
-            className="space-y-10 text-center lg:text-left"
+            className="space-y-12 text-center lg:text-left"
             variants={staggerContainer}
             initial="hidden"
             animate="visible"
           >
-            {/* Greeting */}
-            <motion.div
-              className="space-y-2"
-              variants={fadeInUp}
-            >
-              <motion.p
-                className="text-lg text-gray-600 font-medium tracking-wide"
+            {/* Professional Introduction */}
+            <div className="space-y-6">
+              <motion.div
+                className="inline-flex items-center gap-2 px-4 py-2 bg-white/60 backdrop-blur-sm border border-gray-200/50 rounded-full text-sm font-medium text-gray-700"
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.6, delay: 0.2 }}
               >
-                Hello, I'm
-              </motion.p>
-              <motion.h1
-                className="text-5xl sm:text-6xl lg:text-7xl font-bold leading-tight"
-                variants={textReveal}
-              >
-                <span className="block bg-gradient-to-r from-gray-900 via-blue-800 to-purple-800 bg-clip-text text-transparent">
+                <div className="w-2 h-2 bg-green-500 rounded-full animate-pulse" />
+                Available for new opportunities
+              </motion.div>
+
+              <div className="space-y-4">
+                <TextReveal
+                  className="text-5xl sm:text-6xl lg:text-7xl font-bold leading-[0.9] tracking-tight"
+                  delay={0.4}
+                >
                   David Crystal
-                </span>
-              </motion.h1>
-              <motion.h2
-                className="text-2xl sm:text-3xl lg:text-4xl font-semibold text-gray-700 mt-4"
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.6, delay: 0.6 }}
-              >
-                Senior Full-Stack Engineer
-              </motion.h2>
-            </motion.div>
+                </TextReveal>
 
+                <motion.div
+                  className="space-y-2"
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.6, delay: 0.8 }}
+                >
+                  <h2 className="text-2xl sm:text-3xl font-semibold text-gray-800">
+                    Senior Full-Stack Engineer
+                  </h2>
+                  <div className="flex items-center justify-center lg:justify-start gap-4 text-sm text-gray-600">
+                    <span className="flex items-center gap-1">
+                      📍 Los Angeles, CA
+                    </span>
+                    <span className="flex items-center gap-1">
+                      🚀 5+ Years Experience
+                    </span>
+                  </div>
+                </motion.div>
+              </div>
+            </div>
+
+            {/* Professional Description */}
             <motion.p
-              className="text-xl text-gray-600 max-w-2xl leading-relaxed"
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: 0.8 }}
-            >
-              I craft exceptional digital experiences through innovative web technologies,
-              scalable architectures, and pixel-perfect design implementations.
-            </motion.p>
-
-            {/* CTA Buttons */}
-            <motion.div
-              className="flex flex-col sm:flex-row gap-6"
+              className="text-xl text-gray-600 max-w-2xl leading-relaxed font-light"
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: 1.0 }}
             >
-              <motion.button
-                onClick={scrollToProjects}
-                className="group relative px-8 py-4 bg-gradient-to-r from-blue-600 to-purple-600 text-white font-semibold rounded-2xl shadow-lg overflow-hidden"
-                whileHover={{
-                  scale: 1.05,
-                  boxShadow: "0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04)"
-                }}
-                whileTap={{ scale: 0.95 }}
-              >
-                <div className="absolute inset-0 bg-gradient-to-r from-blue-700 to-purple-700 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
-                <div className="relative flex items-center justify-center gap-3">
-                  <motion.div
-                    animate={{ x: [0, 5, 0] }}
-                    transition={{ duration: 2, repeat: Infinity }}
-                  >
-                    <ExternalLink size={20} />
-                  </motion.div>
-                  View My Work
-                </div>
-              </motion.button>
+              I architect and develop scalable web applications that drive business growth.
+              Specializing in modern JavaScript frameworks, cloud infrastructure, and
+              performance optimization for enterprise-level solutions.
+            </motion.p>
 
-              <motion.button
-                onClick={handleDownloadResume}
-                className="group px-8 py-4 bg-white/80 backdrop-blur-sm text-gray-900 font-semibold rounded-2xl border-2 border-gray-200 hover:border-blue-300 shadow-lg transition-all duration-300"
-                whileHover={{
-                  scale: 1.05,
-                  backgroundColor: "rgba(255, 255, 255, 0.95)"
-                }}
-                whileTap={{ scale: 0.95 }}
-              >
-                <div className="flex items-center justify-center gap-3">
-                  <motion.div
-                    animate={{ y: [0, -3, 0] }}
-                    transition={{ duration: 2, repeat: Infinity }}
-                  >
-                    <Download size={20} />
-                  </motion.div>
-                  Download Resume
-                </div>
-              </motion.button>
-            </motion.div>
-
-            {/* Stats */}
+            {/* Professional CTA Section */}
             <motion.div
-              className="grid grid-cols-3 gap-8 pt-8 border-t border-gray-200/50"
+              className="space-y-6"
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: 1.2 }}
             >
-              <div className="text-center lg:text-left">
-                <motion.div
-                  className="text-2xl font-bold bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent"
-                  animate={{ scale: [1, 1.05, 1] }}
-                  transition={{ duration: 2, repeat: Infinity }}
+              <div className="flex flex-col sm:flex-row gap-4">
+                <MagneticButton
+                  onClick={scrollToProjects}
+                  className="px-8 py-4 bg-gray-900 text-white font-medium rounded-2xl hover:bg-gray-800 transition-all duration-300 shadow-lg"
                 >
-                  5+
-                </motion.div>
-                <div className="text-sm text-gray-600 font-medium">Years Experience</div>
+                  <div className="flex items-center justify-center gap-3">
+                    <ExternalLink size={18} />
+                    View My Work
+                  </div>
+                </MagneticButton>
+
+                <MagneticButton
+                  onClick={handleDownloadResume}
+                  className="px-8 py-4 bg-white border-2 border-gray-200 text-gray-900 font-medium rounded-2xl hover:border-gray-300 hover:shadow-lg transition-all duration-300"
+                >
+                  <div className="flex items-center justify-center gap-3">
+                    <Download size={18} />
+                    Resume
+                  </div>
+                </MagneticButton>
               </div>
-              <div className="text-center lg:text-left">
-                <motion.div
-                  className="text-2xl font-bold bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent"
-                  animate={{ scale: [1, 1.05, 1] }}
-                  transition={{ duration: 2, repeat: Infinity, delay: 0.5 }}
+
+              {/* Social Links */}
+              <div className="flex items-center justify-center lg:justify-start gap-4">
+                <MagneticButton
+                  onClick={() => window.open('https://github.com/david-star0210', '_blank')}
+                  className="p-3 bg-white/60 backdrop-blur-sm border border-gray-200/50 rounded-xl hover:bg-white/80 transition-all duration-300"
                 >
-                  50+
-                </motion.div>
-                <div className="text-sm text-gray-600 font-medium">Projects Completed</div>
-              </div>
-              <div className="text-center lg:text-left">
-                <motion.div
-                  className="text-2xl font-bold bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent"
-                  animate={{ scale: [1, 1.05, 1] }}
-                  transition={{ duration: 2, repeat: Infinity, delay: 1 }}
+                  <Github size={20} className="text-gray-700" />
+                </MagneticButton>
+                <MagneticButton
+                  onClick={() => window.open('https://linkedin.com/in/david-crystal', '_blank')}
+                  className="p-3 bg-white/60 backdrop-blur-sm border border-gray-200/50 rounded-xl hover:bg-white/80 transition-all duration-300"
                 >
-                  1M+
-                </motion.div>
-                <div className="text-sm text-gray-600 font-medium">Users Impacted</div>
+                  <Linkedin size={20} className="text-gray-700" />
+                </MagneticButton>
               </div>
             </motion.div>
+
           </motion.div>
 
-          {/* Right Content - Enhanced Profile Section */}
+          {/* Right Content - Ultra Professional */}
           <motion.div
             className="flex justify-center lg:justify-end relative"
             variants={fadeInRight}
           >
             <div className="relative">
-              {/* Background decorative elements */}
+              {/* Professional Stats Cards */}
               <motion.div
-                className="absolute inset-0 bg-gradient-to-br from-blue-100/50 to-purple-100/50 rounded-3xl blur-3xl scale-110"
-                animate={{
-                  rotate: [0, 5, -5, 0],
-                  scale: [1.1, 1.15, 1.1]
-                }}
-                transition={{
-                  duration: 8,
-                  repeat: Infinity,
-                  ease: "easeInOut"
-                }}
-              />
+                className="grid grid-cols-2 gap-4 mb-8"
+                initial={{ opacity: 0, y: 30 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.8, delay: 0.6 }}
+              >
+                <motion.div
+                  className="bg-white/80 backdrop-blur-sm border border-gray-200/50 rounded-2xl p-6 text-center shadow-lg"
+                  whileHover={{ scale: 1.05, y: -5 }}
+                  transition={{ duration: 0.3 }}
+                >
+                  <motion.div
+                    className="text-3xl font-bold text-gray-900 mb-1"
+                    animate={{ scale: [1, 1.05, 1] }}
+                    transition={{ duration: 2, repeat: Infinity }}
+                  >
+                    5+
+                  </motion.div>
+                  <div className="text-sm text-gray-600 font-medium">Years</div>
+                </motion.div>
 
-              {/* Main image container */}
+                <motion.div
+                  className="bg-white/80 backdrop-blur-sm border border-gray-200/50 rounded-2xl p-6 text-center shadow-lg"
+                  whileHover={{ scale: 1.05, y: -5 }}
+                  transition={{ duration: 0.3 }}
+                >
+                  <motion.div
+                    className="text-3xl font-bold text-gray-900 mb-1"
+                    animate={{ scale: [1, 1.05, 1] }}
+                    transition={{ duration: 2, repeat: Infinity, delay: 0.5 }}
+                  >
+                    50+
+                  </motion.div>
+                  <div className="text-sm text-gray-600 font-medium">Projects</div>
+                </motion.div>
+
+                <motion.div
+                  className="bg-white/80 backdrop-blur-sm border border-gray-200/50 rounded-2xl p-6 text-center shadow-lg col-span-2"
+                  whileHover={{ scale: 1.05, y: -5 }}
+                  transition={{ duration: 0.3 }}
+                >
+                  <motion.div
+                    className="text-3xl font-bold text-gray-900 mb-1"
+                    animate={{ scale: [1, 1.05, 1] }}
+                    transition={{ duration: 2, repeat: Infinity, delay: 1 }}
+                  >
+                    1M+
+                  </motion.div>
+                  <div className="text-sm text-gray-600 font-medium">Users Impacted</div>
+                </motion.div>
+              </motion.div>
+
+              {/* Professional Image */}
               <motion.div
-                className="relative z-10 p-2 bg-white/80 backdrop-blur-sm rounded-3xl shadow-2xl"
+                className="relative bg-white/80 backdrop-blur-sm border border-gray-200/50 rounded-3xl p-4 shadow-2xl"
+                initial={{ opacity: 0, scale: 0.8 }}
+                animate={{ opacity: 1, scale: 1 }}
+                transition={{ duration: 0.8, delay: 0.8 }}
                 whileHover={{
                   scale: 1.02,
-                  rotateY: 5,
-                  rotateX: 5
-                }}
-                transition={{ duration: 0.4, ease: [0.25, 0.46, 0.45, 0.94] }}
-                style={{
-                  transformStyle: "preserve-3d",
-                  perspective: "1000px"
+                  boxShadow: "0 25px 50px -12px rgba(0, 0, 0, 0.15)"
                 }}
               >
                 <motion.img
                   src={`${process.env.NODE_ENV === 'production' ? '/portfolio' : ''}/profile-avatar.png`}
-                  alt="David Crystal"
+                  alt="David Crystal - Senior Full-Stack Engineer"
                   className="w-80 h-auto object-cover rounded-2xl"
-                  initial={{ opacity: 0, scale: 0.8 }}
-                  animate={{ opacity: 1, scale: 1 }}
-                  transition={{ duration: 0.8, delay: 0.5 }}
+                  whileHover={{ scale: 1.02 }}
+                  transition={{ duration: 0.3 }}
                 />
 
-                {/* Floating tech icons */}
+                {/* Subtle tech indicators */}
                 <motion.div
-                  className="absolute -top-6 -right-6 w-12 h-12 bg-gradient-to-r from-blue-500 to-blue-600 rounded-2xl flex items-center justify-center text-white font-bold shadow-lg"
+                  className="absolute -top-2 -right-2 w-6 h-6 bg-green-500 rounded-full border-2 border-white shadow-lg"
                   animate={{
-                    y: [0, -10, 0],
-                    rotate: [0, 10, -10, 0]
+                    scale: [1, 1.2, 1],
                   }}
                   transition={{
-                    duration: 4,
+                    duration: 2,
                     repeat: Infinity,
                     ease: "easeInOut"
                   }}
-                >
-                  ⚛️
-                </motion.div>
-
-                <motion.div
-                  className="absolute -bottom-6 -left-6 w-12 h-12 bg-gradient-to-r from-purple-500 to-purple-600 rounded-2xl flex items-center justify-center text-white font-bold shadow-lg"
-                  animate={{
-                    y: [0, 10, 0],
-                    rotate: [0, -10, 10, 0]
-                  }}
-                  transition={{
-                    duration: 3,
-                    repeat: Infinity,
-                    ease: "easeInOut",
-                    delay: 1
-                  }}
-                >
-                  🚀
-                </motion.div>
-
-                <motion.div
-                  className="absolute top-1/4 -left-8 w-10 h-10 bg-gradient-to-r from-green-400 to-green-500 rounded-xl flex items-center justify-center text-white font-bold shadow-lg"
-                  animate={{
-                    x: [0, -15, 0],
-                    y: [0, -5, 0],
-                    scale: [1, 1.1, 1]
-                  }}
-                  transition={{
-                    duration: 5,
-                    repeat: Infinity,
-                    ease: "easeInOut",
-                    delay: 0.5
-                  }}
-                >
-                  💻
-                </motion.div>
+                />
               </motion.div>
             </div>
           </motion.div>

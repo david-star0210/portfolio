@@ -12,6 +12,8 @@ import Contact from '../components/Contact'
 import Footer from '../components/Footer'
 import LoadingAnimation from '../components/LoadingAnimation'
 import ParticleBackground from '../components/ParticleBackground'
+import CustomCursor from '../components/CustomCursor'
+import FloatingNav from '../components/FloatingNav'
 import './globals.css'
 
 export default function Home() {
@@ -37,7 +39,9 @@ export default function Home() {
             animate={{ opacity: 1 }}
             transition={{ duration: 0.8, ease: [0.25, 0.46, 0.45, 0.94] }}
           >
+            <CustomCursor />
             <ParticleBackground />
+            <FloatingNav />
             <div className="relative z-10">
               <Header />
               <Hero />
