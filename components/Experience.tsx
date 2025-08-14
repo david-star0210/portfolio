@@ -1,9 +1,15 @@
 'use client'
 
-import { Briefcase, Cloud, Code } from 'lucide-react'
-import { motion } from 'framer-motion'
+import { Briefcase, Cloud, Code, Calendar, MapPin, ChevronRight, Building } from 'lucide-react'
+import { motion, useInView } from 'framer-motion'
+import { useRef, useState } from 'react'
+import { fadeInUp, staggerContainer, scaleIn } from '../utils/animations'
+import TextReveal from './TextReveal'
 
 const Experience = () => {
+  const ref = useRef(null)
+  const isInView = useInView(ref, { once: true, amount: 0.2 })
+  const [hoveredExperience, setHoveredExperience] = useState<number | null>(null)
   const experiences = [
     {
       title: 'Senior Full-Stack Engineer',
@@ -51,54 +57,179 @@ const Experience = () => {
   ]
 
   return (
-    <section id="experience" className="section-padding">
-      <div className="container-max">
-        <h2 className="text-3xl sm:text-4xl font-bold text-gray-900 mb-12 text-center">
-          Experience
-        </h2>
+    <section
+      ref={ref}
+      id="experience"
+      className="section-padding relative overflow-hidden bg-gradient-to-br from-gray-50/30 via-white to-blue-50/10"
+    >
+      {/* Subtle background elements */}
+      <div className="absolute inset-0">
+        <motion.div
+          className="absolute top-20 right-20 w-2 h-2 bg-blue-400/10 rounded-full"
+          animate={{
+            scale: [1, 1.5, 1],
+            opacity: [0.1, 0.3, 0.1]
+          }}
+          transition={{ duration: 4, repeat: Infinity }}
+        />
+        <motion.div
+          className="absolute bottom-32 left-16 w-1.5 h-1.5 bg-purple-400/15 rounded-full"
+          animate={{
+            scale: [1, 2, 1],
+            opacity: [0.15, 0.4, 0.15]
+          }}
+          transition={{ duration: 3, repeat: Infinity, delay: 1 }}
+        />
+      </div>
 
-        <div className="space-y-12">
+      <div className="container-max relative z-10">
+        <motion.div
+          className="text-center mb-20"
+          variants={fadeInUp}
+          initial="hidden"
+          animate={isInView ? "visible" : "hidden"}
+        >
+          <TextReveal
+            className="text-4xl sm:text-5xl font-bold text-gray-900 mb-6"
+            delay={0.2}
+          >
+            Professional Experience
+          </TextReveal>
+          <motion.p
+            className="text-xl text-gray-600 max-w-3xl mx-auto leading-relaxed"
+            initial={{ opacity: 0, y: 20 }}
+            animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
+            transition={{ duration: 0.6, delay: 0.4 }}
+          >
+            A journey of building scalable solutions, leading teams, and delivering
+            exceptional results across diverse technology stacks and industries.
+          </motion.p>
+        </motion.div>
+
+        <motion.div
+          className="space-y-12"
+          variants={staggerContainer}
+          initial="hidden"
+          animate={isInView ? "visible" : "hidden"}
+        >
           {experiences.map((exp, index) => {
             const IconComponent = exp.icon
             return (
-              <div key={index} className="relative">
-                <div className="flex flex-col lg:flex-row gap-8">
-                  <div className="flex-shrink-0">
-                    <div className="w-12 h-12 bg-primary-100 rounded-lg flex items-center justify-center">
-                      <IconComponent className="w-6 h-6 text-primary-600" />
-                    </div>
-                  </div>
+              <motion.div
+                key={index}
+                className="relative"
+                variants={scaleIn}
+                transition={{ delay: index * 0.2 }}
+                onHoverStart={() => setHoveredExperience(index)}
+                onHoverEnd={() => setHoveredExperience(null)}
+              >
+                <motion.div
+                  className="bg-white/80 backdrop-blur-sm rounded-3xl p-8 shadow-lg border border-gray-200/50 relative overflow-hidden"
+                  whileHover={{
+                    scale: 1.02,
+                    y: -5,
+                    boxShadow: "0 25px 50px -12px rgba(0, 0, 0, 0.15)"
+                  }}
+                  transition={{ duration: 0.4 }}
+                >
+                  {/* Animated background gradient on hover */}
+                  <motion.div
+                    className="absolute inset-0 bg-gradient-to-br from-blue-500/5 to-purple-500/5 opacity-0 transition-opacity duration-500"
+                    animate={{ opacity: hoveredExperience === index ? 1 : 0 }}
+                  />
 
-                  <div className="flex-1">
-                    <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between mb-4">
-                      <h3 className="text-xl font-bold text-gray-900 mb-2 sm:mb-0">
-                        {exp.title}
-                      </h3>
-                      <div className="text-sm text-gray-500">
-                        {exp.company} • {exp.location} • {exp.period}
+                  <div className="relative z-10">
+                    <div className="flex flex-col lg:flex-row gap-8">
+                      {/* Company Icon */}
+                      <motion.div
+                        className="flex-shrink-0"
+                        whileHover={{ scale: 1.1, rotate: 5 }}
+                        transition={{ duration: 0.3 }}
+                      >
+                        <div className="w-16 h-16 bg-gradient-to-br from-blue-500/10 to-purple-500/10 rounded-2xl flex items-center justify-center shadow-lg">
+                          <IconComponent className="w-8 h-8 text-gray-700" />
+                        </div>
+                      </motion.div>
+
+                      <div className="flex-1">
+                        {/* Job Title and Company */}
+                        <motion.div
+                          className="mb-6"
+                          initial={{ opacity: 0, x: -20 }}
+                          animate={isInView ? { opacity: 1, x: 0 } : { opacity: 0, x: -20 }}
+                          transition={{ delay: 0.3 + index * 0.1 }}
+                        >
+                          <h3 className="text-2xl font-bold text-gray-900 mb-2">
+                            {exp.title}
+                          </h3>
+                          <div className="flex flex-wrap gap-4 text-gray-600">
+                            <div className="flex items-center gap-2">
+                              <Building className="w-4 h-4" />
+                              <span className="font-medium">{exp.company}</span>
+                            </div>
+                            <div className="flex items-center gap-2">
+                              <MapPin className="w-4 h-4" />
+                              <span>{exp.location}</span>
+                            </div>
+                            <div className="flex items-center gap-2">
+                              <Calendar className="w-4 h-4" />
+                              <span>{exp.period}</span>
+                            </div>
+                          </div>
+                        </motion.div>
+
+                        {/* Achievements */}
+                        <motion.div
+                          className="space-y-4"
+                          initial={{ opacity: 0, y: 20 }}
+                          animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
+                          transition={{ delay: 0.5 + index * 0.1 }}
+                        >
+                          {exp.achievements.map((achievement, achievementIndex) => (
+                            <motion.div
+                              key={achievementIndex}
+                              className="flex items-start gap-4 p-3 rounded-xl hover:bg-gray-50/50 transition-colors group"
+                              whileHover={{ x: 5 }}
+                              initial={{ opacity: 0, x: -10 }}
+                              animate={{ opacity: 1, x: 0 }}
+                              transition={{ duration: 0.2, delay: 0.7 + index * 0.1 + achievementIndex * 0.05 }}
+                            >
+                              <motion.div
+                                className="w-2 h-2 bg-gradient-to-r from-blue-500 to-purple-500 rounded-full mt-2 flex-shrink-0"
+                                animate={{
+                                  scale: [1, 1.2, 1],
+                                }}
+                                transition={{
+                                  duration: 2,
+                                  repeat: Infinity,
+                                  delay: achievementIndex * 0.2
+                                }}
+                              />
+                              <span className="text-gray-700 leading-relaxed group-hover:text-gray-900 transition-colors">
+                                {achievement}
+                              </span>
+                              <ChevronRight className="w-4 h-4 text-gray-400 opacity-0 group-hover:opacity-100 transition-opacity ml-auto flex-shrink-0" />
+                            </motion.div>
+                          ))}
+                        </motion.div>
                       </div>
                     </div>
-
-                    <ul className="space-y-3">
-                      {exp.achievements.map((achievement, achievementIndex) => (
-                        <li key={achievementIndex} className="flex items-start gap-3">
-                          <div className="w-1.5 h-1.5 bg-primary-600 rounded-full mt-2 flex-shrink-0"></div>
-                          <span className="text-gray-700 leading-relaxed">
-                            {achievement}
-                          </span>
-                        </li>
-                      ))}
-                    </ul>
                   </div>
-                </div>
+                </motion.div>
 
+                {/* Timeline connector */}
                 {index < experiences.length - 1 && (
-                  <div className="absolute left-6 top-12 w-0.5 h-12 bg-gray-200"></div>
+                  <motion.div
+                    className="absolute left-8 -bottom-6 w-0.5 h-12 bg-gradient-to-b from-blue-300 to-purple-300 rounded-full"
+                    initial={{ scaleY: 0 }}
+                    animate={{ scaleY: 1 }}
+                    transition={{ delay: 0.8 + index * 0.2, duration: 0.5 }}
+                  />
                 )}
-              </div>
+              </motion.div>
             )
           })}
-        </div>
+        </motion.div>
       </div>
     </section>
   )
