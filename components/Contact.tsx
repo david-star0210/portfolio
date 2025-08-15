@@ -14,19 +14,19 @@ const Contact = () => {
     {
       icon: Mail,
       label: 'Email',
-      value: 'david05220210@gmail.com',
-      href: 'mailto:david05220210@gmail.com'
+      value: 'marko.djurdjevic@gmail.com',
+      href: 'mailto:marko.djurdjevic@gmail.com'
     },
     {
       icon: Phone,
       label: 'Phone',
-      value: '(+1) 606-308-9728',
-      href: 'tel:+16063089728'
+      value: '+381628908711',
+      href: 'tel:+381628908711'
     },
     {
       icon: MapPin,
       label: 'Location',
-      value: 'Los Angeles, CA',
+      value: 'Serbia, Draga Vukovica Korcagina',
       href: '#'
     }
   ]
@@ -35,21 +35,21 @@ const Contact = () => {
     {
       icon: Linkedin,
       label: 'LinkedIn',
-      href: 'https://linkedin.com/in/david-crystal',
+      href: 'https://linkedin.com/in/marko-djurdjevic',
       color: 'hover:text-blue-600'
     },
     {
       icon: Github,
       label: 'GitHub',
-      href: 'https://github.com/david-star0210',
+      href: 'https://github.com/marko-djurdjevic',
       color: 'hover:text-gray-900'
     }
   ]
 
   const handleDownloadResume = () => {
     const link = document.createElement('a');
-    link.href = `${process.env.NODE_ENV === 'production' ? '/portfolio' : ''}/David-Crystal-Resume.pdf`;
-    link.download = 'David-Crystal-Resume.pdf';
+    link.href = `${process.env.NODE_ENV === 'production' ? '/portfolio' : ''}/Marko-Djurdjevic-Resume.pdf`;
+    link.download = 'Marko-Djurdjevic-Resume.pdf';
     link.click();
   }
 

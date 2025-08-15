@@ -104,7 +104,7 @@ const Hero = () => {
                   className="text-5xl sm:text-6xl lg:text-7xl font-bold leading-[0.9] tracking-tight"
                   delay={0.4}
                 >
-                  David Crystal
+                  Marko Djurdjevic
                 </TextReveal>
 
                 <motion.div
@@ -114,11 +114,11 @@ const Hero = () => {
                   transition={{ duration: 0.6, delay: 0.8 }}
                 >
                   <h2 className="text-2xl sm:text-3xl font-semibold text-gray-800">
-                    Senior Full-Stack Engineer
+                    Senior Full-Stack Developer
                   </h2>
                   <div className="flex items-center justify-center lg:justify-start gap-4 text-sm text-gray-600">
                     <span className="flex items-center gap-1">
-                      📍 Los Angeles, CA
+                      📍 Serbia, Draga Vukovica Korcagina
                     </span>
                     <span className="flex items-center gap-1">
                       🚀 5+ Years Experience
@@ -135,9 +135,9 @@ const Hero = () => {
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: 1.0 }}
             >
-              I architect and develop scalable web applications that drive business growth.
-              Specializing in modern JavaScript frameworks, cloud infrastructure, and
-              performance optimization for enterprise-level solutions.
+              I am a highly skilled full-stack developer with over 7 years of experience building
+              client's ideas into real world applications. Client satisfaction is my top priority
+              and I always strive to understand their requirements and business objectives.
             </motion.p>
 
             {/* Professional CTA Section */}
@@ -260,7 +260,7 @@ const Hero = () => {
               >
                 <motion.img
                   src={`${process.env.NODE_ENV === 'production' ? '/portfolio' : ''}/profile-avatar.png`}
-                  alt="David Crystal - Senior Full-Stack Engineer"
+                  alt="Marko Djurdjevic - Senior Full-Stack Developer"
                   className="w-80 h-auto object-cover rounded-2xl"
                   whileHover={{ scale: 1.02 }}
                   transition={{ duration: 0.3 }}

@@ -31,8 +31,7 @@ const About = () => {
               animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
               transition={{ duration: 0.6, delay: 0.4 }}
             >
-              Passionate about creating exceptional digital experiences through clean code, 
-              innovative solutions, and collaborative teamwork.
+              My work slogan is "See carefully what Clients want, then Build exactly what Clients like"
             </motion.p>
           </motion.div>
           
@@ -46,24 +45,25 @@ const About = () => {
               className="space-y-6"
               variants={fadeInUp}
             >
-              <motion.p 
+              <motion.p
                 className="text-lg leading-relaxed text-gray-700"
                 initial={{ opacity: 0, y: 20 }}
                 animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
                 transition={{ duration: 0.6, delay: 0.6 }}
               >
-                With over <strong>5 years of experience</strong> in full-stack development, I specialize in 
-                building scalable web applications using modern technologies like React, Next.js, Node.js, and AWS.
+                With over <strong>7 years of experience</strong> in full-stack development, I specialize in
+                building client's ideas into real world applications. Client satisfaction is my top priority
+                and I always strive to understand their requirements and business objectives.
               </motion.p>
-              <motion.p 
+              <motion.p
                 className="text-lg leading-relaxed text-gray-700"
                 initial={{ opacity: 0, y: 20 }}
                 animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
                 transition={{ duration: 0.6, delay: 0.8 }}
               >
-                I'm passionate about clean architecture, performance optimization, and creating 
-                intuitive user experiences. My approach combines technical expertise with a strong 
-                product mindset to deliver solutions that truly make a difference.
+                My passion for coding and problem-solving has driven me to deliver exceptional results
+                for clients across various industries. With a strong command over both front-end and
+                back-end development, I possess a deep understanding of the entire software development lifecycle.
               </motion.p>
               <motion.p 
                 className="text-lg leading-relaxed text-gray-700"

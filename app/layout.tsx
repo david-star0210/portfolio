@@ -2,13 +2,13 @@ import type { Metadata } from 'next'
 import './globals.css'
 
 export const metadata: Metadata = {
-  title: 'David Crystal - Full-Stack Engineer',
-  description: 'Senior Full-Stack Engineer specializing in Next.js, Node.js, and modern web technologies. Building scalable, high-performance applications.',
-  keywords: 'Full-Stack Engineer, Next.js, Node.js, React, TypeScript, AWS',
-  authors: [{ name: 'David Crystal' }],
+  title: 'Marko Djurdjevic - Full-Stack Developer',
+  description: 'Senior Full-Stack Developer with over 7 years of experience building client ideas into real world applications. Specializing in React, Node.js, and modern web technologies.',
+  keywords: 'Full-Stack Developer, React, Node.js, Next.js, TypeScript, PostgreSQL, Redux',
+  authors: [{ name: 'Marko Djurdjevic' }],
   openGraph: {
-    title: 'David Crystal - Full-Stack Engineer',
-    description: 'Senior Full-Stack Engineer specializing in Next.js, Node.js, and modern web technologies.',
+    title: 'Marko Djurdjevic - Full-Stack Developer',
+    description: 'Senior Full-Stack Developer with over 7 years of experience building client ideas into real world applications.',
     type: 'website',
   },
 }
